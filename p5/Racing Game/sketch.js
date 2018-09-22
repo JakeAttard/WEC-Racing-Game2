@@ -8,6 +8,11 @@ var currentState = LOADING;
 let playerSprite;
 let personImages = new Array(4);
 
+let officialSprite;
+let officialImages = new Array(8);
+
+let pitCrewSprite;
+let pitCrewImages = new Array(3);
 //let playerGameScoreBoard;
 
 // Cars
@@ -26,13 +31,26 @@ var carRepairLives = 3;
 
 function preload() {
     
-    // Menu Sprite
+    // Menu Sprites
     personImages[0] = loadImage('images/person1.png');
     personImages[1] = loadImage('images/person2.png');
     personImages[2] = loadImage('images/person3.png');
     personImages[3] = loadImage('images/person4.png');
     
-    // Game Images / Sprites
+    officialImages[0] = loadImage('images/official1.png');
+    officialImages[1] = loadImage('images/official2.png');
+    officialImages[2] = loadImage('images/official3.png');
+    officialImages[3] = loadImage('images/official4.png');
+    officialImages[4] = loadImage('images/official5.png');
+    officialImages[5] = loadImage('images/official6.png');
+    officialImages[6] = loadImage('images/official7.png');
+    officialImages[7] = loadImage('images/official8.png');
+    
+    pitCrewImages[0] = loadImage('images/pitcrew1.png');
+    pitCrewImages[1] = loadImage('images/pitcrew2.png');
+    pitCrewImages[2] = loadImage('images/pitcrew3.png');
+    
+    // Car Images
     wecPorsche = loadImage('images/Porsche.png');
     wecMcdonalds = loadImage('images/wecMcdonalds.png');
     wecAudi = loadImage('images/wecAudi.png');
@@ -47,9 +65,17 @@ function preload() {
 function setup() {
     createCanvas(1200, 800);
     
-    playerSprite = createSprite(0, 600, 50, 50);
+    playerSprite = createSprite(0, 400, 50, 50);
     playerSprite.addAnimation('run', personImages[0], personImages[1], personImages[2], personImages[3]);
     playerSprite.setVelocity(1,0);
+    
+    officialSprite = createSprite(0, 150, 50, 50);
+    officialSprite.addAnimation('run', officialImages[0], officialImages[1], officialImages[2], officialImages[3], officialImages[4], officialImages[5], officialImages[6], officialImages[7]);
+    officialSprite.setVelocity(1,0);
+    
+    pitCrewSprite = createSprite(0, 700, 50, 50);
+    pitCrewSprite.addAnimation('run', pitCrewImages[0], pitCrewImages[1], pitCrewImages[2]);
+    pitCrewSprite.setVelocity(1,0);
 
     raceTrack.push(new raceTracks());
     opposition.push(new Opposition());
@@ -100,6 +126,8 @@ function drawMainMenuScreen(){
     rect(150, 150, 100, 100);
     fill('white');
     text('Main Menu. Click to play.', 300, 200);
+    pitCrewSprite.velocity.x = (mouseX - pitCrewSprite.position.x) * 0.2;
+    pitCrewSprite.velocity.y = (mouseY - pitCrewSprite.position.y) * 0.2;
     drawSprites();
 }
 
