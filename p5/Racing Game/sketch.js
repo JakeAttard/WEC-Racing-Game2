@@ -122,10 +122,25 @@ function drawLoadingScreen(){
  * Draw the main menu screen
  */
 function drawMainMenuScreen(){
-    fill('lightgreen');
-    rect(150, 150, 100, 100);
-    fill('white');
-    text('Main Menu. Click to play.', 300, 200);
+    // Text
+    textSize(40);
+    textFont(font);
+    textAlign(LEFT);
+    fill(255);
+    text('Warm Up Your Engine! Click to quickly play.', 225, 50);
+    
+    textSize(25);
+    textFont(font);
+    textAlign(LEFT);
+    fill(255);
+    text('Instructions:', 480, 760);
+    
+    textSize(20);
+    textFont(font);
+    textAlign(LEFT);
+    fill(255);
+    text('Move your racing driver via mouse to the car. Move your pit crew member via keyboard left, right, up and down keys.', 200, 780);
+
     pitCrewSprite.velocity.x = (mouseX - pitCrewSprite.position.x) * 0.2;
     pitCrewSprite.velocity.y = (mouseY - pitCrewSprite.position.y) * 0.2;
     drawSprites();
