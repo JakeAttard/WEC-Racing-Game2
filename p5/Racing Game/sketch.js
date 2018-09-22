@@ -25,10 +25,14 @@ var carsOvertaken = 0;
 var carRepairLives = 3;
 
 function preload() {
+    
+    // Menu Sprite
     personImages[0] = loadImage('images/person1.png');
     personImages[1] = loadImage('images/person2.png');
     personImages[2] = loadImage('images/person3.png');
     personImages[3] = loadImage('images/person4.png');
+    
+    // Game Images / Sprites
     wecPorsche = loadImage('images/Porsche.png');
     wecMcdonalds = loadImage('images/wecMcdonalds.png');
     wecAudi = loadImage('images/wecAudi.png');
@@ -45,7 +49,7 @@ function setup() {
     
     playerSprite = createSprite(0, 600, 50, 50);
     playerSprite.addAnimation('run', personImages[0], personImages[1], personImages[2], personImages[3]);
-    playerSprite.setVelocity(2,0);
+    playerSprite.setVelocity(1,0);
 
     raceTrack.push(new raceTracks());
     opposition.push(new Opposition());
@@ -99,6 +103,24 @@ function drawMainMenuScreen(){
     drawSprites();
 }
 
+function keyPressed() {
+  if (keyCode == RIGHT_ARROW) {
+    playerSprite.setSpeed(1.5, 0);
+  }
+  else if (keyCode == DOWN_ARROW) {
+    playerSprite.setSpeed(1.5, 90);
+  }
+  else if (keyCode == LEFT_ARROW) {
+    playerSprite.setSpeed(1.5, 180);
+  }
+  else if (keyCode == UP_ARROW) {
+    playerSprite.setSpeed(1.5, 270);
+  }
+  else if (key == ' ') {
+    playerSprite.setSpeed(0, 0);
+  }
+  return false;
+}
 
 /*
  * Implement the game logic
