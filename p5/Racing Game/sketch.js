@@ -13,6 +13,7 @@ let officialImages = new Array(8);
 
 let pitCrewSprite;
 let pitCrewImages = new Array(3);
+
 //let playerGameScoreBoard;
 
 // Cars
@@ -140,6 +141,7 @@ function drawMainMenuScreen(){
     textAlign(LEFT);
     fill(255);
     text('Move your racing driver via mouse to the car. Move your pit crew member via keyboard left, right, up and down keys.', 200, 780);
+    
 
     pitCrewSprite.velocity.x = (mouseX - pitCrewSprite.position.x) * 0.2;
     pitCrewSprite.velocity.y = (mouseY - pitCrewSprite.position.y) * 0.2;
