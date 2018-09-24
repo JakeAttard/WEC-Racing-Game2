@@ -14,8 +14,6 @@ let officialImages = new Array(8);
 let pitCrewSprite;
 let pitCrewImages = new Array(3);
 
-//let playerGameScoreBoard;
-
 // Cars
 var wecPorsche;
 var wecAudi;
@@ -59,7 +57,6 @@ function preload() {
     carRepaired = loadImage('images/CarRepair.png');
     tyres = loadImage('images/tyres.png');
     font = loadFont('Rabbit-Hole.ttf');
-    //playerGameScoreBoard = loadJSON('data.json');
 }
 
 
@@ -82,9 +79,11 @@ function setup() {
     opposition.push(new Opposition());
 
     driver = new Driver();
-    
-  //  print(playerGameScoreBoard.name);
-    //noLoop();
+
+    aTag = createA('score.html', 'View High scores');
+    aTag.position(550, height/2 + 50);
+    aTag.class('btn btn-primary');
+    aTag.hide();
 }
 
 function draw() {
@@ -265,7 +264,7 @@ function drawPlayScreen(){
         textAlign(CENTER);
         fill(255);
         text('YOU CRASHED! GAME OVER.', width / 2, height / 2);
-        
+        aTag.show();
         // Line Shape
         stroke(255);
         line(320, 420, 900, 420);
