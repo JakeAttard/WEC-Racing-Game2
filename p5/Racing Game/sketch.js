@@ -25,6 +25,8 @@ var audiLoadingScreenImg;
 var mcdonaldsLoadingScreenImg;
 var startLineLoadingScreenImg;
 
+var raceStartFlagMenu;
+
 var carCrashed;
 var carRepaired;
 var font;
@@ -71,14 +73,17 @@ function preload() {
     porscheLoadingScreenImg = loadImage('images/PorscheLoadingScreen.png');
     mcdonaldsLoadingScreenImg = loadImage('images/wecMcdonaldsLoadingScreen.png');
     audiLoadingScreenImg = loadImage('images/wecAudiLoadingScreen.png');
+    
+    // RaceTrack Assets
     startLineLoadingScreenImg = loadImage('images/startline.png');
+    raceStartFlagMenu = loadImage('images/racestartflag.png');
 }
 
 
 function setup() {
     createCanvas(1200, 800);
     
-    playerSprite = createSprite(0, 400, 50, 50);
+    playerSprite = createSprite(200, 400, 50, 50);
     playerSprite.addAnimation('run', personImages[0], personImages[1], personImages[2], personImages[3]);
     playerSprite.setVelocity(1,0);
     
@@ -167,11 +172,13 @@ function drawMainMenuScreen(){
     fill(255);
     text('Move your racing driver via mouse to the car. Move your pit crew member via keyboard left, right, up and down keys.', 200, 780);
     
+    image(raceStartFlagMenu, 500, 100, 150, 100);
+    image(startLineLoadingScreenImg, 0, 215, 1200, 50);
+    image(wecMcdonalds, 50, 275);
+    image(wecAudi, 240, 325);
+    image(wecPorsche, 700, 275);
+    image(wecAudi, 890, 325);
     
-    image(wecMcdonalds, 50, 200);
-    image(wecAudi, 240, 275);
-    image(wecPorsche, 1000, 200);
-
     pitCrewSprite.velocity.x = (mouseX - pitCrewSprite.position.x) * 0.2;
     pitCrewSprite.velocity.y = (mouseY - pitCrewSprite.position.y) * 0.2;
     drawSprites();
