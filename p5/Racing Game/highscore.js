@@ -1,5 +1,7 @@
-	function setup() {
+function setup() {
 	  createCanvas(1200, 800);
+    
+    
 	  headDivHScore = createDiv('High score'); 
 	  headDivHScore.position(50, 50);
     headDivHScore.class('heading');
@@ -24,9 +26,10 @@
 	}
 
 	function drawData(data) {
+        background(100);
 		var startY = 60;
 		var startX = 70;
-
+        
 		for (var i=0; i<data.highscores.length; i++) {
 		  startY += 30;
 		  startX = 60;
@@ -44,8 +47,9 @@
 
 		  valDivTime = createDiv(data.highscores[i].time); 
 		  valDivTime.position(startX + 200, startY);
-      valDivTime.class('val');	      
+      valDivTime.class('val');	
 
 		  console.log(data.highscores[i]);
 		}
+        
 	}	

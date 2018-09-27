@@ -19,6 +19,12 @@ var wecPorsche;
 var wecAudi;
 var wecMcdonalds;
 
+// Cars Loading Screen
+var porscheLoadingScreenImg;
+var audiLoadingScreenImg;
+var mcdonaldsLoadingScreenImg;
+var startLineLoadingScreenImg;
+
 var carCrashed;
 var carRepaired;
 var font;
@@ -49,6 +55,9 @@ function preload() {
     pitCrewImages[1] = loadImage('images/pitcrew2.png');
     pitCrewImages[2] = loadImage('images/pitcrew3.png');
     
+    // Car Sound
+    mySound = loadSound('sounds/racecar.mp3');
+    
     // Car Images
     wecPorsche = loadImage('images/Porsche.png');
     wecMcdonalds = loadImage('images/wecMcdonalds.png');
@@ -57,6 +66,12 @@ function preload() {
     carRepaired = loadImage('images/CarRepair.png');
     tyres = loadImage('images/tyres.png');
     font = loadFont('Rabbit-Hole.ttf');
+    
+    // Car Loading Screen Images
+    porscheLoadingScreenImg = loadImage('images/PorscheLoadingScreen.png');
+    mcdonaldsLoadingScreenImg = loadImage('images/wecMcdonaldsLoadingScreen.png');
+    audiLoadingScreenImg = loadImage('images/wecAudiLoadingScreen.png');
+    startLineLoadingScreenImg = loadImage('images/startline.png');
 }
 
 
@@ -74,6 +89,9 @@ function setup() {
     pitCrewSprite = createSprite(0, 700, 50, 50);
     pitCrewSprite.addAnimation('run', pitCrewImages[0], pitCrewImages[1], pitCrewImages[2]);
     pitCrewSprite.setVelocity(1,0);
+    
+    mySound.setVolume(0.1);
+    mySound.play();
 
     raceTrack.push(new raceTracks());
     opposition.push(new Opposition());
@@ -102,7 +120,7 @@ function draw() {
     }    
     
     // Progress to Main Menu after 2s 
-    if (frameCount == 120){
+    if (frameCount == 250){
         currentState = MAIN_MENU;
     }
     
@@ -112,10 +130,18 @@ function draw() {
  * Draw the loading screen
  */
 function drawLoadingScreen(){
-    fill('pink');
-    ellipse(200, 200, 100, 100);
-    fill('white');
-    text('Loading...', 300, 200);
+    textSize(40);
+    textFont(font);
+    textAlign(LEFT);
+    fill(255);
+    text('Engines Starting...', 450, 200);
+    
+    var tintValue = map(mouseX, 0, width, 0, 255);
+    tint(255, 255, 255, 255 - tintValue);
+    image(porscheLoadingScreenImg, 200, 300);
+    image(mcdonaldsLoadingScreenImg, 500, 300);
+    image(audiLoadingScreenImg, 800, 300);
+    image(startLineLoadingScreenImg, 300, 650);
 }
 
 /*
@@ -141,10 +167,15 @@ function drawMainMenuScreen(){
     fill(255);
     text('Move your racing driver via mouse to the car. Move your pit crew member via keyboard left, right, up and down keys.', 200, 780);
     
+    
+    image(wecMcdonalds, 50, 200);
+    image(wecAudi, 240, 275);
+    image(wecPorsche, 1000, 200);
 
     pitCrewSprite.velocity.x = (mouseX - pitCrewSprite.position.x) * 0.2;
     pitCrewSprite.velocity.y = (mouseY - pitCrewSprite.position.y) * 0.2;
     drawSprites();
+    
 }
 
 function keyPressed() {
