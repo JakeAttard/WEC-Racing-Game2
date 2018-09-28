@@ -331,6 +331,7 @@ function mouseMoved() {
 
 }
 
+// Mouse Clicked
 
 function mouseClicked() {
     if (currentState == MAIN_MENU) {
